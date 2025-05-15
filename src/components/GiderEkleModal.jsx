@@ -63,10 +63,11 @@ const GiderEkleModal = ({ open, onClose, onSuccess }) => {
               className="w-full p-2 rounded bg-gray-700 border border-gray-600 text-white"
               required
             >
-              <option>Gıda</option>
+              <option>Market</option>
               <option>Fatura</option>
               <option>Temizlik</option>
               <option>Maaş</option>
+              <option>Fırın</option>
               <option>Diğer</option>
             </select>
           </div>
