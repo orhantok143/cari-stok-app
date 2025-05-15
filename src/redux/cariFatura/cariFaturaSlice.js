@@ -1,6 +1,6 @@
 // src/features/CariFatura/CariFaturaSlice.js
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { createCariFatura, deleteCariFatura, fetchCariFatura, updateCariFatura } from "./CariFaturaService";
+import { createCariFatura, deleteCariFatura, fetchCariFatura, updateCariFatura } from "./cariFaturaService";
 
 // Thunks
 export const getCariFaturaler = createAsyncThunk("cariFatura/getCariFaturaler", fetchCariFatura);
