@@ -1,6 +1,6 @@
 // src/features/Stock/StockSlice.js
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { createStock, deleteStock, fetchStock, updateStock } from "./StockService";
+import { createStock, deleteStock, fetchStock, updateStock } from "./stockService";
 
 // Thunks
 export const getStockler = createAsyncThunk("stock/getStockler", fetchStock);
