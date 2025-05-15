@@ -48,7 +48,7 @@ const StockSlice = createSlice({
       })
       .addCase(getStockler.fulfilled, (state, action) => {
         state.loading = false;
-        state.Stockler = action.payload;
+        state.stockler = action.payload;
       })
       .addCase(getStockler.rejected, (state, action) => {
         state.loading = false;
@@ -62,7 +62,7 @@ const StockSlice = createSlice({
       })
       .addCase(addStock.fulfilled, (state, action) => {
         state.loading = false;
-        state.Stockler.push(action.payload);
+        state.stockler.push(action.payload);
       })
       .addCase(addStock.rejected, (state, action) => {
         state.loading = false;
@@ -76,9 +76,9 @@ const StockSlice = createSlice({
       })
       .addCase(editStock.fulfilled, (state, action) => {
         state.loading = false;
-        const index = state.Stockler.findIndex((g) => g._id === action.payload._id);
+        const index = state.stockler.findIndex((g) => g._id === action.payload._id);
         if (index !== -1) {
-          state.Stockler[index] = action.payload;
+          state.stockler[index] = action.payload;
         }
       })
       .addCase(editStock.rejected, (state, action) => {
@@ -93,7 +93,7 @@ const StockSlice = createSlice({
       })
       .addCase(removeStock.fulfilled, (state, action) => {
         state.loading = false;
-        state.Stockler = state.Stockler.filter((g) => g._id !== action.payload);
+        state.stockler = state.stockler.filter((g) => g._id !== action.payload);
       })
       .addCase(removeStock.rejected, (state, action) => {
         state.loading = false;

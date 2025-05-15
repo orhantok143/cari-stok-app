@@ -20,6 +20,8 @@ const StokSayfasi = () => {
   const stokSchema = Yup.object({
     isim: Yup.string().required("Ürün adı zorunludur"),
     adet: Yup.number().min(0, "Negatif olamaz").required("Adet zorunludur"),
+    tutar: Yup.number().min(0, "Negatif olamaz").required("Tutar zorunludur"),
+
   });
 
   useEffect(() => {
@@ -51,7 +53,6 @@ const stokSil = async (id) => {
   const modalKapat = () => {
     setModalAcik(false);
     setDuzenlenecekStok(null);
-    setisSubmitting(!isSubmitting);
   };
 
   return (
@@ -74,11 +75,13 @@ const stokSil = async (id) => {
         <div className="text-gray-500">Kayıtlı stok bulunamadı.</div>
       ) : (
 
-        <table className="w-full border-collapse table-auto bg-gray-800 shadow-md rounded-lg overflow-hidden">
+        <table className="w-full border-collapse table-auto text-xs font-semibold bg-gray-800 shadow-md rounded-lg overflow-hidden">
         <thead className="bg-gray-700 text-white">
           <tr className="text-left">
             <th className="p-3">Ürün Adı</th>
             <th className="p-3">Adet</th>
+            <th className="p-3">Birim Fiyatı</th>
+
             <th className="p-3 text-center"></th>
           </tr>
         </thead>
@@ -87,6 +90,8 @@ const stokSil = async (id) => {
             <tr key={stok._id} className="hover:bg-gray-500">
               <td className="border-t p-3 border-gray-300/20">{stok.isim}</td>
               <td className="border-t p-3 border-gray-300/20">{stok.adet}</td>
+              <td className="border-t p-3 border-gray-300/20">{stok.tutar} ₺</td>
+
               <td className="flex border-t p-3 space-x-4 border-gray-300/20">
                 <MdDelete
                   size={25}
@@ -127,6 +132,8 @@ const stokSil = async (id) => {
               initialValues={{
                 isim: duzenlenecekStok?.isim || "",
                 adet: duzenlenecekStok?.adet || 0,
+                tutar: duzenlenecekStok?.tutar || 0,
+
               }}
               validationSchema={stokSchema}
               onSubmit={async (values, { resetForm }) => {
@@ -139,7 +146,7 @@ const stokSil = async (id) => {
                     );
                     setStoklar(updated);
                   });
-                } else {
+                } else {                 
                   dispatch(addStock(values)).then((data) => {
                     setStoklar((prev) => [...prev, data.payload]);
                   });
@@ -170,6 +177,19 @@ const stokSil = async (id) => {
                   />
                   <ErrorMessage
                     name="adet"
+                    component="div"
+                    className="text-red-500 text-sm"
+                  />
+                </div>
+                  <div>
+                  <label className="block mb-2 text-gray-600">Birim Fiyatı</label>
+                  <Field
+                    type="number"
+                    name="tutar"
+                    className="w-full border p-3 rounded-lg focus:ring-2 focus:ring-blue-500"
+                  />
+                  <ErrorMessage
+                    name="tutar"
                     component="div"
                     className="text-red-500 text-sm"
                   />
